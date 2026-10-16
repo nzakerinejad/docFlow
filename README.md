@@ -142,3 +142,44 @@ Key areas to investigate:
 **Stage:** Requirements and architecture planning
 
 **Next Step:** Define the MVP and choose the initial search architecture.
+
+## Frontend
+
+### Technology Stack
+
+- **Framework:** React
+- **Language:** TypeScript
+- **Build Tool:** Vite
+- **Hosting:** Cloudflare Workers with Static Assets
+- **Deployment:** Cloudflare Wrangler
+- **Backend:** Separate AI Search API (initially planned with Python/FastAPI)
+
+### Functional Requirements
+
+- Unified natural-language search interface
+- AI chat with streaming responses
+- Search results across Slack, Jira, Confluence, and Git
+- Source citations and links
+- Filters by platform and content type
+- User authentication
+- Responsive design
+
+### Deployment
+
+The React application will be built and deployed to Cloudflare.
+
+The frontend will communicate with a separate backend responsible for search, AI orchestration, and enterprise integrations.
+
+All integration credentials, API secrets, and authorization checks must remain on the server side.
+
+### Implementation Tasks
+
+- [ ] Initialize React + TypeScript using Cloudflare
+- [ ] Implement the main search interface
+- [ ] Implement search results
+- [ ] Implement AI response streaming
+- [ ] Implement authentication
+- [ ] Connect the frontend to the search API
+- [ ] Deploy to Cloudflare
+- [ ] Configure custom domain
+- [ ] Set up CI/CD

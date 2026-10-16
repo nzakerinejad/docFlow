@@ -139,11 +139,25 @@ Key areas to investigate:
 
 ## 10. Project Status
 
-**Stage:** Requirements and architecture planning
+**Stage:** Requirements and architecture planning; React + TypeScript frontend starter initialized
 
 **Next Step:** Define the MVP and choose the initial search architecture.
 
 ## Frontend
+
+The application is in [`frontend/enterprise-search`](frontend/enterprise-search). It currently contains the Cloudflare React starter UI and a sample Worker API; search features are not implemented yet.
+
+### Local Development
+
+Use Node.js 24 (verified with Node.js 24.22.0 and npm 11.19.1).
+
+```bash
+cd frontend/enterprise-search
+npm ci
+npm run dev
+```
+
+See the [frontend README](frontend/enterprise-search/README.md) for nvm setup, build and lint commands, project structure, and deployment instructions.
 
 ### Technology Stack
 
@@ -174,7 +188,7 @@ All integration credentials, API secrets, and authorization checks must remain o
 
 ### Implementation Tasks
 
-- [ ] Initialize React + TypeScript using Cloudflare
+- [x] Initialize React + TypeScript using Cloudflare
 - [ ] Implement the main search interface
 - [ ] Implement search results
 - [ ] Implement AI response streaming

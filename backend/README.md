@@ -13,6 +13,15 @@ sdk env
 
 `.sdkmanrc` selects the existing SDKMAN Java 21 installation. If needed, run `sdk env install` first.
 
+## Swagger UI
+
+With the backend running, open [Swagger UI](http://localhost:8080/swagger-ui.html).
+Expand **Search → GET /api/search**, enter a query, optionally select sources,
+and click **Execute** to send a request and inspect the response.
+
+The generated OpenAPI specification is available at
+[`/v3/api-docs`](http://localhost:8080/v3/api-docs).
+
 ## Search
 
 ```bash

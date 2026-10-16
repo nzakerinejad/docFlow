@@ -166,7 +166,7 @@ See the [frontend README](frontend/enterprise-search/README.md) for nvm setup, b
 - **Build Tool:** Vite
 - **Hosting:** Cloudflare Workers with Static Assets
 - **Deployment:** Cloudflare Wrangler
-- **Backend:** Separate AI Search API (initially planned with Python/FastAPI)
+- **Backend:** Java 21 + Spring Boot API in [`backend`](backend/README.md)
 
 ### Functional Requirements
 

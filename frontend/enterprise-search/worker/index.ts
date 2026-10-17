@@ -1,12 +1,28 @@
-export default {
-  fetch(request) {
-    const url = new URL(request.url);
+interface SearchEnv extends Env {
+  BACKEND_URL?: string
+}
 
-    if (url.pathname.startsWith("/api/")) {
-      return Response.json({
-        name: "Cloudflare",
-      });
+export default {
+  async fetch(request, env) {
+    const url = new URL(request.url)
+    if (url.pathname !== '/api/search') return new Response(null, { status: 404 })
+    if (request.method !== 'GET') return new Response(null, { status: 405, headers: { Allow: 'GET' } })
+    if (!env.BACKEND_URL) {
+      return Response.json({ error: 'Search backend is not configured.' }, { status: 503 })
     }
-		return new Response(null, { status: 404 });
+    try {
+      const target = new URL('/api/search', env.BACKEND_URL)
+      target.search = url.search
+      const response = await fetch(target, { signal: AbortSignal.timeout(25000), redirect: 'error' })
+      return new Response(response.body, {
+        status: response.status,
+        headers: {
+          'Content-Type': response.headers.get('Content-Type') ?? 'application/json',
+          'Cache-Control': 'no-store',
+        },
+      })
+    } catch {
+      return Response.json({ error: 'Search backend is unavailable.' }, { status: 502 })
+    }
   },
-} satisfies ExportedHandler<Env>;
+} satisfies ExportedHandler<SearchEnv>

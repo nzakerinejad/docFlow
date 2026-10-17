@@ -74,10 +74,17 @@ Open the URL printed by Vite. Dependencies were present when checked with
 - `git diff --check` passed.
 - Live frontend Worker returned HTTP 502 and JSON error when backend was
   unreachable, as intended.
-- Successful frontend-to-backend search has NOT been verified. Starting the
-  backend reported port 8080 already in use, while curl to 127.0.0.1:8080 failed.
-  Diagnose the listener/bind address and test locally before claiming success.
-- Browser interactions and populated result rendering have NOT been tested.
+- Successful frontend-to-backend search was verified after fixing Worker
+  redirect handling: `/api/search?query=onboarding` on port 5173 returned
+  HTTP 200 with the expected empty results and connectedSources arrays.
+- Root cause of the earlier HTTP 502: Cloudflare Worker fetch does not support
+  `redirect: 'error'`. With user approval, switched to `redirect: 'manual'`
+  and explicitly reject 3xx responses. Diagnostic error logging was also added
+  with user approval. Build, lint, and diff checks passed after the fix.
+- The redirect fix and diagnostic logging are included in the follow-up Git
+  checkpoint requested by the user.
+- The user confirmed the search works in the browser after this fix.
+- Populated result rendering has NOT been tested; no sources are connected yet.
 - The temporary frontend server started for verification was stopped.
 
 ## Next review with the user
